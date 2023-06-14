@@ -1,69 +1,42 @@
-/* #left-menu > div {
-  background-color: white;
-  border-right: 5px solid black;
-  cursor: pointer;
-  transition: ease-out 0.3s;
-}
-
-#left-menu > div span {
-  transition: ease-out 0.3s;
-}
-
-#left-menu > div:hover {
-  background-color: black;
-  color: white;
-}
-
-#left-menu > div:hover span {
-  color: var(--blue);
-}
-
-#search-box {
-  height: 54px;
-  border-style: outset;
-  border: 3px solid black;
-  box-shadow: 4px 4px 0px black;
-  border-radius: 10px;
-  z-index: 0;
-}
-
-#search-box input[type="text"] {
-  outline: none;
-}
-
-#sign-up-btn {
-  width: 165px;
-  height: 54px;
-  background-color: var(--yellow);
-  border: 3px solid #000000;
-  box-shadow: 4px 4px 0px #000000;
-  border-radius: 10px;
-  transition: ease-out 0.3s;
-}
-
-#sign-up-btn > button:hover {
-  background-color: black;
-  color: var(--yellow);
-} */
-
+#left-menu #logo,
 #left-menu > button {
   background-color: white;
-  border-right: 5px solid black;
   cursor: pointer;
   transition: ease-out 0.3s;
 }
 
-#left-menu > button span {
+span {
+  color: var(--blue);
   transition: ease-out 0.3s;
 }
 
+#left-menu #logo:hover,
 #left-menu > button:hover {
   background-color: black;
+  color: var(--blue);
+}
+
+#left-menu #logo:hover span {
   color: white;
 }
 
-#left-menu > button:hover span {
-  color: var(--blue);
+#palettes:hover {
+  color: var(--purple) !important;
+}
+
+.hover-menu {
+  /* visibility: hidden; */
+  outline: 4px solid black;
+  transition: ease-out 0.3s;
+  z-index: 100;
+}
+
+#palettes:hover .hover-menu {
+  visibility: visible;
+}
+
+#colors:hover {
+  color: var(--yellow) !important;
 }
 
 #search-box,
@@ -76,11 +49,21 @@
   color: black;
 }
 
+#search-btn:active {
+  background-color: var(--purple);
+  transition: ease-out 0.3s;
+}
+
 #sign-up-btn {
-  box-shadow: 4px 4px 0px #000000;
+  box-shadow: 4px 4px 0px black;
   transition: ease-out 0.3s;
 }
 
 #sign-up-btn:hover {
   background-color: black;
+}
+
+#sign-up-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px black;
 }
