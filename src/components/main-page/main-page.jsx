@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Marquee from "react-fast-marquee";
 
 import "./main-page.css";
 
@@ -59,12 +60,13 @@ const MainPage = () => {
         <PalettesExampleButton />
       </div>
       <div className="mt-12 lg:mt-24 flex justify-center font-bold text-xl">
-        <button
+        <Link
+          to="/palettes"
           id="view-more-btn"
-          className="w-full lg:w-2/12 h-14 m-3 capitalize border-black bg-white"
+          className="w-full lg:w-2/12 h-14 m-3 capitalize border-black bg-white flex justify-center items-center"
         >
           view more
-        </button>
+        </Link>
       </div>
       <div id="how-to-use"></div>
       <div className="w-full h-full mt-64">
@@ -133,19 +135,30 @@ const MainPage = () => {
           </div>
         </div>
         <div className="mt-6 lg:mt-24 flex justify-center font-bold text-xl">
-          <button
+          <Link
             id="view-more-btn"
-            className="w-full lg:w-2/12 h-14 m-3 capitalize border-black bg-white"
+            className="w-full lg:w-2/12 h-14 m-3 capitalize border-black bg-white flex justify-center items-center"
           >
             view more
-          </button>
+          </Link>
         </div>
       </div>
       <div className="mt-36 text-center">
         <p className="mt-11 mb-16 text-3xl lg:text-6xl font-bold uppercase">
           popular hashtags
         </p>
-        <PopularHashtag />
+        <Marquee direction="left">
+          <PopularHashtag />
+          <PopularHashtag />
+          <PopularHashtag />
+          <PopularHashtag />
+        </Marquee>
+        <Marquee direction="right">
+          <PopularHashtag />
+          <PopularHashtag />
+          <PopularHashtag />
+          <PopularHashtag />
+        </Marquee>
       </div>
     </main>
   );

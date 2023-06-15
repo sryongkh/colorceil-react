@@ -8,6 +8,41 @@ const GeneratorTab = () => {
   const [green, setGreen] = React.useState(0);
   const [blue, setBlue] = React.useState(0);
 
+  const redSliderRef = React.useRef(null);
+  const greenSliderRef = React.useRef(null);
+  const blueSliderRef = React.useRef(null);
+
+  React.useEffect(() => {
+    const redSlider = redSliderRef.current;
+    const greenSlider = greenSliderRef.current;
+    const blueSlider = blueSliderRef.current;
+
+    const onChangeRed = (evt) => {
+      const redValue = evt.detail.value;
+      setRed(redValue);
+    };
+
+    const onChangeGreen = (evt) => {
+      const greenValue = evt.detail.value;
+      setGreen(greenValue);
+    };
+
+    const onChangeBlue = (evt) => {
+      const blueValue = evt.detail.value;
+      setBlue(blueValue);
+    };
+
+    redSlider?.addEventListener("change", onChangeRed);
+    greenSlider?.addEventListener("change", onChangeGreen);
+    blueSlider?.addEventListener("change", onChangeBlue);
+
+    return () => {
+      redSlider?.removeEventListener("change", onChangeRed);
+      greenSlider?.removeEventListener("change", onChangeGreen);
+      blueSlider?.removeEventListener("change", onChangeBlue);
+    };
+  }, []);
+
   return (
     <>
       <div
@@ -18,16 +53,16 @@ const GeneratorTab = () => {
       </div>
       <div
         id="generator-box"
-        className="w-full h-52 lg:h-48 lg:px-44 border-t-2 lg:border-t-4 border-black grid lg:grid-cols-3 lg:items-center text-black"
+        className="w-full h-60 lg:h-48 px-5 lg:px-40 border-t-2 lg:border-t-4 border-black grid lg:grid-cols-3 lg:items-center text-black"
       >
-        <div className="flex flex-col lg:px-10">
-          <div className="flex flex-row place-content-between items-center">
-            <p className="text-lg font-bold">Red</p>
+        <div className="flex flex-col lg:px-5">
+          <div className="mt-10 lg:mt-0 flex flex-row place-content-between items-center">
+            <p className="lg:text-lg font-bold">Red</p>
             <input
-              type="text"
+              type="number"
               value={red}
               onChange={(e) => setRed(e.target.value)}
-              className="w-20 h-12 bg-black text-lg font-bold text-white text-center rounded-xl outline-none"
+              className="w-12 lg:w-20 py-2 lg:h-12 bg-black lg:text-lg font-bold text-white text-center rounded-md lg:rounded-xl outline-none"
             />
           </div>
           <div className="flex justify-center mt-4">
@@ -46,19 +81,20 @@ const GeneratorTab = () => {
               slider-width="334px"
               min="0"
               max="255"
+              round="0"
               value={red}
-              onInput={(e) => setRed(e.target.value)}
+              ref={redSliderRef}
             />
           </div>
         </div>
-        <div className="flex flex-col lg:px-10">
+        <div className="flex flex-col lg:px-5">
           <div className="flex flex-row place-content-between items-center">
-            <p className="text-lg font-bold">Green</p>
+            <p className="lg:text-lg font-bold">Green</p>
             <input
               type="text"
               value={green}
               onChange={(e) => setGreen(e.target.value)}
-              className="w-20 h-12 bg-black text-lg font-bold text-white text-center rounded-xl outline-none"
+              className="w-12 lg:w-20 py-2 lg:h-12 bg-black lg:text-lg font-bold text-white text-center rounded-md lg:rounded-xl outline-none"
             />
           </div>
           <div className="flex justify-center mt-4">
@@ -77,19 +113,20 @@ const GeneratorTab = () => {
               slider-width="334px"
               min="0"
               max="255"
+              round="0"
               value={green}
-              onChange={(e) => setGreen(e.target.value)}
+              ref={greenSliderRef}
             />
           </div>
         </div>
-        <div className="flex flex-col lg:px-10">
+        <div className="flex flex-col lg:px-5">
           <div className="flex flex-row place-content-between items-center">
-            <p className="text-lg font-bold">Blue</p>
+            <p className="lg:text-lg font-bold">Blue</p>
             <input
               type="text"
               value={blue}
               onChange={(e) => setBlue(e.target.value)}
-              className="w-20 h-12 bg-black text-lg font-bold text-white text-center rounded-xl outline-none"
+              className="w-12 lg:w-20 py-2 lg:h-12 bg-black lg:text-lg font-bold text-white text-center rounded-md lg:rounded-xl outline-none"
             />
           </div>
           <div className="flex justify-center mt-4">
@@ -108,8 +145,9 @@ const GeneratorTab = () => {
               slider-width="334px"
               min="0"
               max="255"
+              round="0"
               value={blue}
-              onChange={(e) => setBlue(e.target.value)}
+              ref={blueSliderRef}
             />
           </div>
         </div>

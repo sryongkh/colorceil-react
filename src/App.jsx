@@ -8,6 +8,7 @@ import SignInPage from "./components/user/sign-in-page/signin-page";
 import SignUpPage from "./components/user/sign-up-page/signup-page";
 import FogotPasswordPage from "./components/user/forgot-pass-page/forgot-pass-page";
 import GeneratePalettesPage from "./components/gen-palettes-page/gen-palettes-page";
+import PalettesPage from "./components/palettes-page/palettes-page";
 import Footer from "./components/footer/footer";
 
 function App() {
@@ -36,6 +37,7 @@ function ContentWithFooter() {
         <Route path="signup" element={<SignUpPage />} />
         <Route path="forgotpassword" element={<FogotPasswordPage />} />
         <Route path="generate-palettes" element={<GeneratePalettesPage />} />
+        <Route path="palettes" element={<PalettesPage />} />
         {/* <Route path="*" element={<NoPage />} /> */}
       </Routes>
       {!pathsWithoutFooter.includes(location.pathname) && <Footer />}

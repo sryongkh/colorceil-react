@@ -4,7 +4,7 @@ const Banner = () => {
   return (
     <>
       <div
-        className="fixed top-14 w-full h-16 font-bold text-center bg-black flex justify-center items-center"
+        className="fixed top-18 w-full h-16 font-bold text-center bg-black flex justify-center items-center"
         style={{ zIndex: 98 }}
       >
         <p className="text-white">

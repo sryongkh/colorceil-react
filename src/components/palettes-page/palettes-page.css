@@ -1,0 +1,9 @@
+#frame-filter-btn {
+  box-shadow: 4px 4px 0px black;
+  z-index: 1;
+}
+
+.filter-btn {
+  transition: ease-out 0.3s;
+  z-index: -1;
+}
