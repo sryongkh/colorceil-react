@@ -1,3 +1,7 @@
+#nav-menu {
+  z-index: 99;
+}
+
 #left-menu #logo,
 #left-menu > button {
   background-color: white;
@@ -20,30 +24,18 @@ span {
   color: white;
 }
 
+.hover-menu,
 #palettes {
   cursor: pointer;
+  /* width: 100%; */
   transition: ease-out 0.3s;
+  z-index: 100;
 }
 
 #palettes:hover {
   color: var(--purple) !important;
   background-color: black;
 }
-
-.hover-menu {
-  width: 100%;
-  transition: ease-out 0.3s;
-  z-index: 100;
-}
-
-/* .flex-menu-items {
-  display: flex;
-  align-items: center;
-} */
-/* 
-#palettes:hover .hover-menu {
-  visibility: visible;
-} */
 
 #colors:hover {
   color: var(--yellow) !important;

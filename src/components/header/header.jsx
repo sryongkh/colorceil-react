@@ -1,11 +1,13 @@
 import React from "react";
 // import ReactDOM from "react-dom";
+import { Link } from "react-router-dom";
+
+import Banner from "./banner/banner";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 import "./header.css";
-import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isMobile, setIsMobile] = React.useState(false);
@@ -29,12 +31,12 @@ const Header = () => {
 
   return (
     <>
-      <div id="nav-menu" className="sticky top-0 z-50 bg-white">
+      <div id="nav-menu" className="sticky top-0 bg-white">
         {isMobile ? (
           <>
-            <div className="p-5 flex justify-between items-center border-b-4 border-black z-50">
+            <div className="p-3 flex justify-between items-center">
               <Link id="logo" to="/">
-                <p className="font-bold text-xl">
+                <p className="font-bold text-xl flex justify-center">
                   COLOR<span>ceil</span>
                 </p>
               </Link>
@@ -43,12 +45,13 @@ const Header = () => {
                   icon={faBars}
                   size="2x"
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
+                  className="flex items-center"
                 />
               </div>
             </div>
 
             {isMenuOpen && (
-              <div className="absolute w-full z-50 bg-black text-base text-white font-bold flex flex-col">
+              <div className="absolute top-14 w-full z-50 bg-red-500 text-base text-white font-bold flex flex-col">
                 <div className="w-full h-16 flex justify-center items-center">
                   Palettes
                 </div>
@@ -59,7 +62,7 @@ const Header = () => {
             )}
           </>
         ) : (
-          <div className="w-full h-12 text-md lg:h-24 lg:text-xl flex flex-col  lg:flex-row font-bold border-b-4 border-black bg-white">
+          <div className="w-full h-12 text-md lg:h-24 lg:text-xl flex flex-col lg:flex-row font-bold border-b-4 border-black bg-white">
             <div id="left-menu" className="flex flex-col lg:flex-row">
               <Link
                 id="logo"
@@ -153,6 +156,7 @@ const Header = () => {
           </div>
         )}
       </div>
+      <Banner />
     </>
   );
 };

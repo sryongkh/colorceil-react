@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import "./main-page.css";
 
 import PalettesExampleButton from "./palettes-example-btn/palettes-example-btn";
@@ -16,7 +18,7 @@ const MainPage = () => {
   return (
     <main>
       <div>
-        <p className="text-4xl lg:text-8xl font-bold mt-36 uppercase text-center">
+        <p className="text-4xl lg:text-8xl font-bold mt-36 lg:mt-48 uppercase text-center">
           Place to store your
           <br />
           Colors Palettes
@@ -33,19 +35,19 @@ const MainPage = () => {
       >
         <button
           id="view-palettes-btn"
-          className="lg:w-2/12 mx-2 lg:mr-3 h-14 capitalize rounded-lg border-4 border-black bg-blue-700 hover:bg-black hover:text-white"
+          className="lg:w-2/12 mt-6 lg:m-3 lg:mt-0 lg:ml-3 h-14 mx-2 lg:mx-0 capitalize rounded-lg border-4 border-black bg-blue-700 hover:bg-black hover:text-white"
         >
           view palettes
         </button>
         <button
           id="how-to-btn"
-          className="lg:w-2/12 mt-6 lg:mt-0 mx-2 lg:ml-3 h-14 capitalize rounded-lg border-4 border-black bg-white hover:bg-black hover:text-white"
+          className="lg:w-2/12 mt-6 lg:m-3 lg:mt-0 lg:ml-3 h-14 mx-2 lg:mx-0 capitalize rounded-lg border-4 border-black bg-white hover:bg-black hover:text-white"
           onClick={() => goto("#how-to-use")}
         >
           how to use?
         </button>
       </div>
-      <div className="lg:w-3/4 m-6 lg:mx-auto mt-36 lg:mt-24 text-center row lg:grid lg:grid-cols-3 items-center gap-7">
+      <div className="lg:w-3/4 m-3 lg:mx-auto mt-36 lg:mt-24 text-center row lg:grid lg:grid-cols-3 items-center gap-7">
         <PalettesExampleButton />
         <PalettesExampleButton />
         <PalettesExampleButton />
@@ -59,7 +61,7 @@ const MainPage = () => {
       <div className="mt-12 lg:mt-24 flex justify-center font-bold text-xl">
         <button
           id="view-more-btn"
-          className="w-full lg:w-1/12 h-14 mx-2 capitalize border-black bg-white"
+          className="w-full lg:w-2/12 h-14 m-3 capitalize border-black bg-white"
         >
           view more
         </button>
@@ -68,11 +70,11 @@ const MainPage = () => {
       <div className="w-full h-full mt-64">
         <div className="flex flex-col lg:flex-row justify-center items-center">
           <div className="flex flex-col justify-between h-full">
-            <p className="mt-11 text-6xl font-bold uppercase text-center">
+            <p className="lg:mt-11 text-4xl lg:text-6xl font-bold uppercase text-center">
               how to use?
             </p>
-            <div className="mt-12 flex justify-center items-center">
-              <ul className="text-3xl font-bold list-disc uppercase">
+            <div className="lg:w-30 mt-12 flex justify-center items-center">
+              <ul className="text-2xl lg:text-3xl font-bold list-disc uppercase">
                 <li>sign in Colorsceil.com</li>
                 <li>
                   Customize colors in
@@ -91,17 +93,21 @@ const MainPage = () => {
                 </li>
               </ul>
             </div>
-            <button
-              id="gen-palettes-btn"
-              className="w-full lg:w-2/3 h-14 lg:mr-3 my-12 lg:my-4  font-bold capitalize border-black bg-fuchsia-400 hover:bg-black hover:text-amber-500"
-            >
-              generate palettes
-            </button>
+            <div className="w-full">
+              <Link
+                to="/generate-palettes"
+                id="gen-palettes-btn"
+                className="w-full lg:w-2/3 h-14 lg:mr-3 mt-4 mb-20 lg:my-4 font-bold capitalize border-black bg-fuchsia-400 hover:bg-black hover:text-amber-500 flex justify-center items-center"
+              >
+                generate palettes
+              </Link>
+            </div>
           </div>
+
           <div className="flex justify-center items-center">
             <div
               id="color-palettes-show"
-              className="lg:w-96 w-96 lg:h-96 lg:mx-20 h-96 grid grid-cols-5"
+              className="w-80 lg:w-96 h-80 lg:h-96 lg:mx-20 grid grid-cols-5"
             >
               <div className="bg-red-400 border-2 border-black" />
               <div className="bg-orange-400 border-2 border-black" />
@@ -126,10 +132,10 @@ const MainPage = () => {
             <img src={palette3} alt="" className="w-80 mb-10 md:mx-2 md:grid" />
           </div>
         </div>
-        <div className="mt-12 lg:mt-24 flex justify-center font-bold text-xl">
+        <div className="mt-6 lg:mt-24 flex justify-center font-bold text-xl">
           <button
             id="view-more-btn"
-            className="w-full lg:w-1/12 h-14 mx-2 capitalize border-black bg-white"
+            className="w-full lg:w-2/12 h-14 m-3 capitalize border-black bg-white"
           >
             view more
           </button>

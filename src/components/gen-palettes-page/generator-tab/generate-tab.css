@@ -1,0 +1,11 @@
+#hex-box {
+  z-index: 4;
+}
+
+#generator-box {
+  z-index: 3;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}

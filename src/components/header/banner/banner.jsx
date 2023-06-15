@@ -4,8 +4,8 @@ const Banner = () => {
   return (
     <>
       <div
-        id=""
-        className="h-16 px-44 font-bold text-center bg-black flex justify-center items-center"
+        className="fixed top-14 w-full h-16 font-bold text-center bg-black flex justify-center items-center"
+        style={{ zIndex: 98 }}
       >
         <p className="text-white">
           Haven&apos;t account yet?{" "}

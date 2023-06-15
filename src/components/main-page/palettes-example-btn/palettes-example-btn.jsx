@@ -19,11 +19,13 @@ const PalettesExampleButton = () => {
         </div>
         <div className="w-full h-2/5 flex justify-between items-center text-white">
           <div className="mx-4">
-            <p className="font-bold">Rainbow colors palette</p>
+            <p className="text-sm lg:font-bold text-start">
+              Rainbow colors palette
+            </p>
           </div>
           <div className="mx-4 flex items-center">
             <FontAwesomeIcon icon={faEye} />
-            <p className="mx-1">Test</p>
+            <p className="mx-1 text-sm lg:font-bold text-start">Test</p>
             <FontAwesomeIcon icon={faCopy} className="mx-1 cursor-pointer" />
             <FontAwesomeIcon icon={faPlus} className="mx-1 cursor-pointer" />
           </div>

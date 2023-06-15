@@ -12,17 +12,22 @@
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@material-tailwind/react": "^2.0.3",
     "babel-plugin-macros": "^3.1.0",
+    "konsta": "^2.0.0",
     "node": "^20.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.12.1"
+    "react-range": "^1.8.14",
+    "react-router-dom": "^6.12.1",
+    "toolcool-range-slider": "^4.0.27"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^4.0.0",
     "autoprefixer": "^10.4.14",
+    "daisyui": "^3.1.0",
     "eslint": "^8.38.0",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
