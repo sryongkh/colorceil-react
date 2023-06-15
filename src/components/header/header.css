@@ -20,20 +20,30 @@ span {
   color: white;
 }
 
+#palettes {
+  cursor: pointer;
+  transition: ease-out 0.3s;
+}
+
 #palettes:hover {
   color: var(--purple) !important;
+  background-color: black;
 }
 
 .hover-menu {
-  /* visibility: hidden; */
-  outline: 4px solid black;
+  width: 100%;
   transition: ease-out 0.3s;
   z-index: 100;
 }
 
+/* .flex-menu-items {
+  display: flex;
+  align-items: center;
+} */
+/* 
 #palettes:hover .hover-menu {
   visibility: visible;
-}
+} */
 
 #colors:hover {
   color: var(--yellow) !important;

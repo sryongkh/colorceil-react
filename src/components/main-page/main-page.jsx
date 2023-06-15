@@ -45,7 +45,7 @@ const MainPage = () => {
           how to use?
         </button>
       </div>
-      <div className="lg:w-3/4 m-6 lg:mx-auto lg:mt-24 text-center row lg:grid lg:grid-cols-3 items-center gap-7">
+      <div className="lg:w-3/4 m-6 lg:mx-auto mt-36 lg:mt-24 text-center row lg:grid lg:grid-cols-3 items-center gap-7">
         <PalettesExampleButton />
         <PalettesExampleButton />
         <PalettesExampleButton />
@@ -56,22 +56,22 @@ const MainPage = () => {
         <PalettesExampleButton />
         <PalettesExampleButton />
       </div>
-      <div className="mt-24 flex justify-center font-bold text-xl">
+      <div className="mt-12 lg:mt-24 flex justify-center font-bold text-xl">
         <button
           id="view-more-btn"
-          className="w-full lg:w-1/12 mx-2 h-14 capitalize border-black bg-white"
+          className="w-full lg:w-1/12 h-14 mx-2 capitalize border-black bg-white"
         >
           view more
         </button>
       </div>
       <div id="how-to-use"></div>
       <div className="w-full h-full mt-64">
-        <div className="flex flex-col lg:flex-row justify-center">
+        <div className="flex flex-col lg:flex-row justify-center items-center">
           <div className="flex flex-col justify-between h-full">
             <p className="mt-11 text-6xl font-bold uppercase text-center">
               how to use?
             </p>
-            <div className="mt-12">
+            <div className="mt-12 flex justify-center items-center">
               <ul className="text-3xl font-bold list-disc uppercase">
                 <li>sign in Colorsceil.com</li>
                 <li>
@@ -93,7 +93,7 @@ const MainPage = () => {
             </div>
             <button
               id="gen-palettes-btn"
-              className="h-14 w-full lg:w-2/3 mr-3 my-4 font-bold capitalize border-black bg-fuchsia-400 hover:bg-black hover:text-amber-500"
+              className="w-full lg:w-2/3 h-14 lg:mr-3 my-12 lg:my-4  font-bold capitalize border-black bg-fuchsia-400 hover:bg-black hover:text-amber-500"
             >
               generate palettes
             </button>
@@ -114,29 +114,29 @@ const MainPage = () => {
       </div>
       <div className="mt-44">
         <div className="w-full h-full mt-44">
-          <p className="mt-11 text-6xl font-bold uppercase text-center">
+          <p className="mt-11 text-3xl lg:text-6xl font-bold uppercase text-center">
             popular palettes collections
           </p>
           <div
             id="img-palettes"
-            className="w-full mt-8 flex flex-col lg:flex-row justify-center items-center"
+            className="w-full mt-10 flex flex-col lg:flex-row justify-center items-center"
           >
-            <img src={palette1} alt="" className="w-80 mx-2 md:grid" />
-            <img src={palette2} alt="" className="w-80 mx-2 md:grid" />
-            <img src={palette3} alt="" className="w-80 mx-2 md:grid" />
+            <img src={palette1} alt="" className="w-80 mb-10 md:mx-2 md:grid" />
+            <img src={palette2} alt="" className="w-80 mb-10 md:mx-2 md:grid" />
+            <img src={palette3} alt="" className="w-80 mb-10 md:mx-2 md:grid" />
           </div>
         </div>
-        <div className="mt-16 flex justify-center font-bold text-xl">
+        <div className="mt-12 lg:mt-24 flex justify-center font-bold text-xl">
           <button
             id="view-more-btn"
-            className="w-1/12 mr-3 h-14 capitalize border-black bg-white"
+            className="w-full lg:w-1/12 h-14 mx-2 capitalize border-black bg-white"
           >
             view more
           </button>
         </div>
       </div>
       <div className="mt-36 text-center">
-        <p className="mt-11 mb-16 text-6xl font-bold uppercase">
+        <p className="mt-11 mb-16 text-3xl lg:text-6xl font-bold uppercase">
           popular hashtags
         </p>
         <PopularHashtag />
