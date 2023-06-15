@@ -1,0 +1,30 @@
+.link {
+  transition: ease-out 0.3s;
+}
+
+#signup-box {
+  box-shadow: -15px 15px 0px black;
+}
+
+#signup-box input {
+  outline: none;
+}
+
+.alt-login-btn {
+  border: 3px solid black;
+  transition: ease-out 0.3s;
+}
+
+.alt-login-btn:hover {
+  box-shadow: -4px 4px 0px black;
+  transform: translate(4px, -4px);
+}
+
+.alt-login-btn:active {
+  box-shadow: 0px 0px 0px black;
+  transform: translate(0px, 0px);
+}
+
+.shadow-input {
+  box-shadow: 4px 4px 0px black;
+}
