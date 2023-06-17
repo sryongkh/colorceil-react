@@ -1,12 +1,27 @@
+import React from "react";
+
 import "./palettes-example-btn.css";
+
+import PaletteSelectedPage from "../modal-palettes-selected/modal-palettes-selected";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faEye, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const PalettesExampleButton = () => {
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
-      <div
+      <button
+        onClick={handleOpenModal}
         id="color-palettes-example"
         className="h-36 mb-4 bg-black bg-opacity-50"
       >
@@ -30,7 +45,8 @@ const PalettesExampleButton = () => {
             <FontAwesomeIcon icon={faPlus} className="mx-1 cursor-pointer" />
           </div>
         </div>
-      </div>
+      </button>
+      <PaletteSelectedPage isOpen={isModalOpen} onClose={handleCloseModal} />
     </>
   );
 };

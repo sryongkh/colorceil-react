@@ -7,7 +7,7 @@ const FogotPasswordPage = () => {
   return (
     <>
       <div className="w-full flex justify-center items-start">
-        <div className="w-full lg:w-1/4 h-11/12 mt-14 lg:mt-12 m-6">
+        <div className="w-full lg:w-1/4 h-11/12 mt-14 lg:mt-24 m-6">
           <p className="text-2xl lg:text-3xl font-bold uppercase">
             forgot password?
           </p>
@@ -28,7 +28,7 @@ const FogotPasswordPage = () => {
             <button className="w-full h-10 lg:h-14 lg:my-8 mt-6 uppercase font-bold rounded-lg border-2 lg:border-4 border-black bg-blue-500 shadow-input">
               reset password
             </button>
-            <div className="mt-3 lg:mt-12 text-center uppercase font-boldtext-center font-bold">
+            <div className="mt-3 lg:mt-6 text-center uppercase font-boldtext-center font-bold">
               <Link
                 to="/signin"
                 className="link uppercase text-blue-500 hover:text-amber-500"

@@ -121,7 +121,7 @@ const MainPage = () => {
         </div>
       </div>
       <div className="mt-44">
-        <div className="w-full h-full mt-44">
+        <div className="w-full h-full mt-48">
           <p className="mt-11 text-3xl lg:text-6xl font-bold uppercase text-center">
             popular palettes collections
           </p>

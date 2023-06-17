@@ -127,9 +127,10 @@ const Header = () => {
                   className="w-11/12 ml-5 bg-transparent outline-none"
                   placeholder="Search"
                 />
-                <button
+                <Link
+                  to="search-palettes"
                   id="search-btn"
-                  className="w-1/6 lg:w-1/12 h-full rounded-r-lg bg-black transition-colors duration-300 hover:bg-amber-500"
+                  className="w-1/6 lg:w-1/12 h-full rounded-r-lg bg-black transition-colors duration-300 hover:bg-amber-500 flex justify-center items-center"
                 >
                   <FontAwesomeIcon
                     icon={faMagnifyingGlass}
@@ -137,7 +138,7 @@ const Header = () => {
                     size="lg"
                     className="text-white"
                   />
-                </button>
+                </Link>
               </div>
             </div>
 

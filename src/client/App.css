@@ -6,11 +6,16 @@ html {
   scroll-behavior: smooth;
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 ::-webkit-scrollbar {
-  width: 15px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
+  height: 15%;
   background-color: black;
 }
 

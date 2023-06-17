@@ -1,15 +1,26 @@
+import React from "react";
 import { Link } from "react-router-dom";
 
 import "./signin-page.css";
+
+import { login } from "../../../api/auth";
 
 import google_icon from "../../../assets/img/google.png";
 import github_icon from "../../../assets/img/github.png";
 
 const SignInPage = () => {
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    await login(email, password);
+  };
+
   return (
     <>
       <div className="w-full flex justify-center items-start">
-        <div className="w-full lg:w-1/4 h-11/12 mt-6 lg:mt-12 m-6">
+        <div className="w-full lg:w-1/4 h-11/12 mt-6 lg:mt-24 m-6">
           <p className="text-2xl lg:text-3xl font-bold uppercase">sign in</p>
           <div
             id="signin-box"

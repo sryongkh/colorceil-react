@@ -9,7 +9,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 const PalettesPage = () => {
   return (
     <>
-      <div className="mt-56 px-44">
+      <div className="mt-44 px-44">
         <div
           id="search-box"
           className="w-full h-10 lg:h-14 flex items-center rounded-xl border-2 lg:border-4 border-solid border-black bg-white"
@@ -44,12 +44,13 @@ const PalettesPage = () => {
           <Link
             to="/generate-palettes"
             id="gen-palettes-btn"
-            className="w-full lg:w-3/12 h-14 lg:mr-3 mt-4 mb-20 lg:my-4 font-bold capitalize border-black bg-fuchsia-400 hover:bg-black hover:text-amber-500 flex justify-center items-center"
+            className="w-full lg:w-2/12 h-14 mt-4 mb-20 font-bold capitalize border-black bg-fuchsia-400 hover:bg-black hover:text-amber-500 flex justify-center items-center"
           >
             generate palettes
           </Link>
         </div>
-        <div className="w-full flex justify-end">
+        <div className="w-full mt-4 flex justify-end">
+          <p className="mr-4 text-sm font-bold">Sort by</p>
           <div
             id="frame-filter-btn"
             className="w-5/12 h-14 font-bold grid grid-cols-3 justify-center rounded-xl border-4 border-black"
@@ -66,7 +67,7 @@ const PalettesPage = () => {
           </div>
         </div>
 
-        <div className="my-8 grid grid-cols-3 gap-2">
+        <div className="mt-8 mb-40 grid grid-cols-3 gap-2">
           <PalettesExampleButton />
           <PalettesExampleButton />
           <PalettesExampleButton />
