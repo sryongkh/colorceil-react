@@ -1,0 +1,115 @@
+import { Component, inject, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { Api, Palette } from '../core/api';
+import { PaletteCard } from '../shared/palette-card';
+import examples from '../../shared/palettes.json';
+
+@Component({
+  selector: 'app-home',
+  imports: [RouterLink, PaletteCard],
+  template: `
+    <section class="hero page-width">
+      <p class="eyebrow">
+        <span class="dot"></span> A home for your next great idea
+      </p>
+      <h1>
+        Place to store your<br /><span class="highlight">colors palettes.</span>
+      </h1>
+      <p class="hero-copy">
+        Find a little inspiration. Make it your own.<br />Create the color
+        palette for whatever comes next.
+      </p>
+      <div class="actions centered">
+        <a class="button blue" routerLink="/palettes">View palettes ↗</a
+        ><a class="button" routerLink="/" fragment="how-to-use">How to use ↓</a>
+      </div>
+    </section>
+    <section class="page-width section" aria-labelledby="inspiration-title">
+      <div class="section-heading">
+        <h2 id="inspiration-title">Fresh color inspiration</h2>
+        <a routerLink="/palettes">View all ↗</a>
+      </div>
+      @if (offline()) {
+        <p class="notice">
+          Showing example palettes. Connect the server to see saved palettes.
+        </p>
+      }
+      <div class="palette-grid">
+        @for (palette of palettes(); track palette._id) {
+          <app-palette-card [palette]="palette" />
+        }
+      </div>
+    </section>
+    <section id="how-to-use" class="how-to section">
+      <div class="page-width how-grid">
+        <div>
+          <p class="eyebrow">From a spark to a palette</p>
+          <h2>Good colors.<br />Great possibilities.</h2>
+          <ol>
+            <li>Pick a palette that feels like you.</li>
+            <li>Customize each color with RGB or HEX.</li>
+            <li>Give it a name and save it to your collection.</li>
+          </ol>
+          <a class="button pink" routerLink="/generate-palettes"
+            >Generate palettes ↗</a
+          >
+        </div>
+        <div class="poster" aria-label="A five color rainbow palette">
+          <div class="poster-colors">
+            @for (color of rainbow; track color) {
+              <span [style.background]="color"></span>
+            }
+          </div>
+          <p>MAKE ROOM FOR COLOR. ✳</p>
+        </div>
+      </div>
+    </section>
+    <section class="page-width section">
+      <div class="section-heading">
+        <h2>Popular palettes collections</h2>
+        <a routerLink="/palettes">Explore ↗</a>
+      </div>
+      <div class="collection-grid">
+        @for (collection of collections; track collection.tag) {
+          <a routerLink="/search-palettes" [queryParams]="{ q: collection.tag }"
+            ><img
+              [src]="collection.image"
+              [alt]="collection.tag + ' color inspiration'"
+              loading="lazy"
+            /><strong>#{{ collection.tag }} ↗</strong></a
+          >
+        }
+      </div>
+    </section>
+    <section class="page-width section tag-section">
+      <h2>Follow your color mood.</h2>
+      <div class="tags">
+        @for (tag of tags; track tag) {
+          <a routerLink="/search-palettes" [queryParams]="{ q: tag }"
+            >#{{ tag }} ↗</a
+          >
+        }
+      </div>
+    </section>
+  `,
+})
+export class Home {
+  private api = inject(Api);
+  offline = signal(false);
+  palettes = signal<Palette[]>(
+    examples.map((p, i) => ({ ...p, _id: `example-${i}` })),
+  );
+  rainbow = examples[0].colors;
+  collections = [
+    { tag: 'pastel', image: '/assets/image_1.png' },
+    { tag: 'bright', image: '/assets/image_2.png' },
+    { tag: 'nature', image: '/assets/image_3.png' },
+  ];
+  tags = ['pastel', 'sunset', 'nature', 'ocean', 'bright', 'purple'];
+  constructor() {
+    this.api
+      .palettes()
+      .then(({ palettes }) => this.palettes.set(palettes.slice(0, 9)))
+      .catch(() => this.offline.set(true));
+  }
+}
