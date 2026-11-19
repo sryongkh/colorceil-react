@@ -35,3 +35,5 @@ playwright-report/
 test-results/
 .env.*
 !.env.example
+
+.vercel/

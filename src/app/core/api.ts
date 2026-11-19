@@ -28,6 +28,7 @@ export function errorMessage(error: unknown): string {
 export class Api {
   private http = inject(HttpClient);
   user = signal<User | null>(null);
+  demo = signal(false);
   ready = signal(false);
   private sessionRequest?: Promise<void>;
   restoreSession(): Promise<void> {
@@ -58,10 +59,13 @@ export class Api {
   }
   palettes(mine = false) {
     return firstValueFrom(
-      this.http.get<{ palettes: Palette[] }>(
+      this.http.get<{ palettes: Palette[]; demo?: boolean }>(
         `/api/palettes${mine ? '/mine' : ''}`,
       ),
-    );
+    ).then((result) => {
+      this.demo.set(result.demo === true);
+      return result;
+    });
   }
   save(palette: PaletteInput) {
     return firstValueFrom(

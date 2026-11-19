@@ -50,7 +50,7 @@ npm run build
 APP_ORIGIN=http://localhost:3000 npm start
 ```
 
-Express serves the built Angular app from `dist/colorceil/browser`, including direct navigation to Angular routes. `/api/health` reports database readiness. For deployment, use HTTPS, set `NODE_ENV=production`, and set `APP_ORIGIN` to the exact public HTTPS origin so cookies are secure. Supply the database, token secret, and optional mail settings through the deployment environment. No hosting service is configured by this migration.
+Express serves the built Angular app from `dist/colorceil/browser`, including direct navigation to Angular routes. `/api/health` reports database readiness. For deployment, use HTTPS, set `NODE_ENV=production`, and set `APP_ORIGIN` to the exact public HTTPS origin so cookies are secure. Supply the database, token secret, and optional mail settings through the deployment environment. Vercel hosting is configured below.
 
 If using an existing database, keep its connection string and take your normal backup before deploying. Existing bcrypt password hashes remain compatible. New accounts require at least eight characters and at most 72 UTF-8 bytes; existing shorter passwords can still sign in. Palette and session metadata are added without deleting existing users.
 
@@ -83,3 +83,9 @@ public/assets/     Original palette artwork
 React, Vite, Tailwind, and committed Vite cache files are removed from the active application. The original source remains in Git history. Repository name `colorceil-react` is unchanged; the application package is `colorceil-mean`.
 
 Framework reference: [Angular version compatibility](https://angular.dev/reference/versions).
+
+## Vercel deployment
+
+`vercel.json` builds Angular into `dist/colorceil/browser`, preserves SPA deep links, and routes `/api/*` to the shared Node function in `api/index.js`. Before MongoDB is configured, this function serves the example library in read-only preview mode and clearly rejects account and save actions. It never pretends to persist a palette.
+
+To enable real accounts and saved palettes, set `MONGODB_URI` and a randomly generated `TOKEN_SECRET` in the Vercel project's environment settings, then redeploy. Keep Production and Preview databases/secrets separate. `APP_ORIGIN` can be set to the exact HTTPS public origin; otherwise the function uses Vercel's production or preview hostname. SMTP settings remain optional for password reset email. The function caches its database connection within a warm instance.

@@ -68,7 +68,15 @@ import { Api, errorMessage } from './core/api';
     @if (error()) {
       <p class="notice error" role="alert">{{ error() }}</p>
     }
-    <main id="main" tabindex="-1"><router-outlet /></main>
+    <main id="main" tabindex="-1">
+      @if (api.demo()) {
+        <p class="page-width notice" role="status">
+          Explore example palettes and try the color tools. Sign-in and saving
+          will be available soon.
+        </p>
+      }
+      <router-outlet />
+    </main>
     <footer>
       <a class="logo" routerLink="/">COLOR<span>ceil</span></a>
       <p>A place for your colors. Made with Angular.</p>
