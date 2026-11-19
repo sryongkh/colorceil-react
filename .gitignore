@@ -28,3 +28,10 @@ tester
 .env
 playground.mongodb.js
 server.js
+.angular/
+.vite/
+coverage/
+playwright-report/
+test-results/
+.env.*
+!.env.example

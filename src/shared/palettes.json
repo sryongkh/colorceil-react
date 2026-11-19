@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Rainbow colors palette",
+    "colors": ["#60A5FA", "#4ADE80", "#FACC15", "#FB923C", "#EF4444"],
+    "tags": ["rainbow", "bright"]
+  },
+  {
+    "name": "Sunset boulevard",
+    "colors": ["#541388", "#D90368", "#F45B69", "#F7B32B", "#FFD6A5"],
+    "tags": ["sunset", "warm"]
+  },
+  {
+    "name": "A little lavender",
+    "colors": ["#5E548E", "#9F86C0", "#BE95C4", "#E0B1CB", "#F8EDEB"],
+    "tags": ["pastel", "purple"]
+  },
+  {
+    "name": "Ocean daydream",
+    "colors": ["#03045E", "#0077B6", "#00B4D8", "#90E0EF", "#CAF0F8"],
+    "tags": ["ocean", "blue"]
+  },
+  {
+    "name": "Fresh out of the garden",
+    "colors": ["#283618", "#606C38", "#A3B18A", "#DAD7CD", "#FEFAE0"],
+    "tags": ["nature", "green"]
+  },
+  {
+    "name": "Peach, please",
+    "colors": ["#F08080", "#F4978E", "#F8AD9D", "#FBC4AB", "#FFDAB9"],
+    "tags": ["pastel", "warm"]
+  },
+  {
+    "name": "After midnight",
+    "colors": ["#10002B", "#240046", "#5A189A", "#9D4EDD", "#E0AAFF"],
+    "tags": ["purple", "dark"]
+  },
+  {
+    "name": "Summer postcard",
+    "colors": ["#FF006E", "#FB5607", "#FFBE0B", "#8338EC", "#3A86FF"],
+    "tags": ["summer", "bright"]
+  },
+  {
+    "name": "Coffee break",
+    "colors": ["#432818", "#6F1D1B", "#99582A", "#BB9457", "#FFE6A7"],
+    "tags": ["earth", "warm"]
+  }
+]
