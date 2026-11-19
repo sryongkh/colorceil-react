@@ -19,7 +19,10 @@ test("deployment works as a read-only showcase without credentials and never fak
       body: "{}",
     });
     assert.equal(save.status, 503);
-    assert.match((await save.json()).message, /preview mode/);
+    assert.match(
+      (await save.json()).message,
+      /Personal color collections are coming soon/,
+    );
     assert.equal((await fetch(`${url}/api/health`)).status, 503);
   } finally {
     await new Promise((resolve) => server.close(resolve));

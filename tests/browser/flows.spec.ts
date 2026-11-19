@@ -7,7 +7,7 @@ test('discover, customize RGB, sign up, persist, sign back in, and delete a pale
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto('/');
   await expect(
-    page.getByRole('heading', { name: /Place to store/ }),
+    page.getByRole('heading', { name: /Color palettes for/ }),
   ).toBeVisible();
   await page
     .getByRole('button', { name: 'View Rainbow colors palette', exact: true })
@@ -15,7 +15,7 @@ test('discover, customize RGB, sign up, persist, sign back in, and delete a pale
   await expect(page.getByRole('dialog')).toBeVisible();
   await page.getByRole('link', { name: 'Customize ↗' }).click();
   await expect(
-    page.getByRole('heading', { name: 'Make a little magic.' }),
+    page.getByRole('heading', { name: 'Create your own color palette.' }),
   ).toBeVisible();
   await page.getByLabel('HEX code').fill('#FFB443');
   await expect(page.getByLabel('Red', { exact: true })).toHaveValue('255');
@@ -26,7 +26,9 @@ test('discover, customize RGB, sign up, persist, sign back in, and delete a pale
   await page.getByLabel('Tags', { exact: false }).fill('sunset, browser');
   await page.getByRole('button', { name: 'Save palette ↗' }).click();
   await page.getByRole('link', { name: 'Sign up ↗', exact: true }).click();
-  await expect(page.getByRole('heading', { name: 'Join the colorful side.' })).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: 'Join the colorful side.' }),
+  ).toBeVisible();
   await page.getByLabel('Email', { exact: true }).fill('browser@example.com');
   await page.getByLabel('Password', { exact: true }).fill('Browser-test-123');
   await page

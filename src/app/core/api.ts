@@ -19,7 +19,7 @@ export function errorMessage(error: unknown): string {
     return (
       (typeof error.error?.message === 'string' ? error.error.message : null) ??
       (error.status === 0 || error.status >= 500
-        ? 'Cannot reach the server. Please try again shortly.'
+        ? 'Your colors are taking a little longer to load. Please try again shortly.'
         : 'The request failed. Please try again.')
     );
   return 'Something went wrong. Please try again.';

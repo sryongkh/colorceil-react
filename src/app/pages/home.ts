@@ -10,14 +10,15 @@ import examples from '../../shared/palettes.json';
   template: `
     <section class="hero page-width">
       <p class="eyebrow">
-        <span class="dot"></span> A home for your next great idea
+        <span class="dot"></span> Color inspiration for your next project
       </p>
       <h1>
-        Place to store your<br /><span class="highlight">colors palettes.</span>
+        Color palettes for<br /><span class="highlight">every idea.</span>
       </h1>
       <p class="hero-copy">
-        Find a little inspiration. Make it your own.<br />Create the color
-        palette for whatever comes next.
+        Discover color combinations for brands, websites, and creative
+        projects.<br />Explore palettes by mood or create your own in a few
+        clicks.
       </p>
       <div class="actions centered">
         <a class="button blue" routerLink="/palettes">View palettes ↗</a
@@ -26,12 +27,12 @@ import examples from '../../shared/palettes.json';
     </section>
     <section class="page-width section" aria-labelledby="inspiration-title">
       <div class="section-heading">
-        <h2 id="inspiration-title">Fresh color inspiration</h2>
+        <h2 id="inspiration-title">Explore inspiring color palettes</h2>
         <a routerLink="/palettes">View all ↗</a>
       </div>
       @if (offline()) {
         <p class="notice">
-          Showing example palettes. Connect the server to see saved palettes.
+          Explore these color palettes while we refresh the collection.
         </p>
       }
       <div class="palette-grid">
@@ -44,10 +45,10 @@ import examples from '../../shared/palettes.json';
       <div class="page-width how-grid">
         <div>
           <p class="eyebrow">From a spark to a palette</p>
-          <h2>Good colors.<br />Great possibilities.</h2>
+          <h2>Create a color palette<br />that fits your vision.</h2>
           <ol>
-            <li>Pick a palette that feels like you.</li>
-            <li>Customize each color with RGB or HEX.</li>
+            <li>Find a color combination that matches your mood.</li>
+            <li>Fine-tune each shade to match your design.</li>
             <li>Give it a name and save it to your collection.</li>
           </ol>
           <a class="button pink" routerLink="/generate-palettes"
@@ -66,7 +67,7 @@ import examples from '../../shared/palettes.json';
     </section>
     <section class="page-width section">
       <div class="section-heading">
-        <h2>Popular palettes collections</h2>
+        <h2>Color palette collections for every mood</h2>
         <a routerLink="/palettes">Explore ↗</a>
       </div>
       <div class="collection-grid">
@@ -82,7 +83,7 @@ import examples from '../../shared/palettes.json';
       </div>
     </section>
     <section class="page-width section tag-section">
-      <h2>Follow your color mood.</h2>
+      <h2>Find color inspiration by mood.</h2>
       <div class="tags">
         @for (tag of tags; track tag) {
           <a routerLink="/search-palettes" [queryParams]="{ q: tag }"

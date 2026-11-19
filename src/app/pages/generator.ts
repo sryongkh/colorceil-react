@@ -11,14 +11,14 @@ import { clampChannel, hexToRgb, readableInk, rgbToHex } from '../core/color';
     <section class="page-width section generator">
       <div class="section-heading">
         <div>
-          <p class="eyebrow">Your colors, your rules</p>
-          <h1>Make a little magic.</h1>
+          <p class="eyebrow">Free color palette creator</p>
+          <h1>Create your own color palette.</h1>
         </div>
         <button class="button" (click)="randomize()">Shuffle colors ⤨</button>
       </div>
       <p class="intro">
-        Select a color, then fine-tune the RGB values. Build a palette that is
-        entirely yours.
+        Build a five-color palette for your brand, website, or next creative
+        project. Choose a shade and adjust it until every color feels right.
       </p>
       <div class="generator-colors">
         @for (color of colors(); track $index; let i = $index) {

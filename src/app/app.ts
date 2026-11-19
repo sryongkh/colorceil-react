@@ -7,6 +7,7 @@ import {
 } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Api, errorMessage } from './core/api';
+import { Seo } from './core/seo';
 
 @Component({
   selector: 'app-root',
@@ -58,7 +59,7 @@ import { Api, errorMessage } from './core/api';
       </nav>
     </header>
     <div class="banner">
-      A little color goes a long way.
+      Find the colors that bring your ideas to life.
       @if (!api.user()) {
         <a routerLink="/signup">Create your free account ↗</a>
       } @else {
@@ -71,20 +72,21 @@ import { Api, errorMessage } from './core/api';
     <main id="main" tabindex="-1">
       @if (api.demo()) {
         <p class="page-width notice" role="status">
-          Explore example palettes and try the color tools. Sign-in and saving
-          will be available soon.
+          Explore color inspiration and try the palette creator. Personal
+          collections are coming soon.
         </p>
       }
       <router-outlet />
     </main>
     <footer>
       <a class="logo" routerLink="/">COLOR<span>ceil</span></a>
-      <p>A place for your colors. Made with Angular.</p>
+      <p>Color palettes and inspiration for your next design.</p>
       <a routerLink="/generate-palettes">Create a palette ↗</a>
     </footer>
   `,
 })
 export class App {
+  private seo = inject(Seo);
   api = inject(Api);
   router = inject(Router);
   menu = signal(false);

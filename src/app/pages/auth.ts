@@ -115,7 +115,7 @@ export class Auth {
       ? 'Enter your email and we will send you a reset link.'
       : this.mode === 'reset-password'
         ? 'Choose a new password for your account.'
-        : 'Save your favorite palettes and make room for new ideas.';
+        : 'Keep your favorite color combinations together for your brand, website, and creative projects.';
   }
   get buttonLabel() {
     return this.mode === 'signin'

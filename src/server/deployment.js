@@ -34,7 +34,7 @@ export function createDeploymentHandler({ env = process.env } = {}) {
       return json(res, 503, {
         status: "setup_required",
         message:
-          "This site is in preview mode. Sign-in and saving palettes will be available soon.",
+          "Personal color collections are coming soon. Explore palettes and create your own color combinations in the meantime.",
       });
     }
     try {

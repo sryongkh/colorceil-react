@@ -12,13 +12,17 @@ import { PaletteCard } from '../shared/palette-card';
     <section class="page-width section catalog">
       <p class="eyebrow">The color library</p>
       <h1>
-        {{ mine ? 'Your colors, all together.' : 'Find your next palette.' }}
+        {{
+          mine
+            ? 'Your colors, all together.'
+            : 'Color palettes for your next design.'
+        }}
       </h1>
       <p class="intro">
         {{
           mine
             ? 'A collection of palettes you have saved. Your saved palettes are also shared in the public color library.'
-            : 'Color combinations for your next design project. Search by name, mood, or HEX code.'
+            : 'Discover color combinations for branding, websites, and illustrations. Find your palette by name, mood, or color code.'
         }}
       </p>
       <div class="catalog-toolbar">
