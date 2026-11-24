@@ -1,7 +1,5 @@
 import { Routes } from '@angular/router';
-import { inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { Api } from './core/api';
+import { requireAuth } from './core/guards/require-auth';
 
 export const routes: Routes = [
   {
@@ -11,7 +9,7 @@ export const routes: Routes = [
       description:
         'Discover inspiring color palettes for branding, websites, and creative projects. Explore color combinations by mood and create your own palette with COLORceil.',
     },
-    loadComponent: () => import('./pages/home').then((m) => m.Home),
+    loadComponent: () => import('./features/home/home').then((m) => m.Home),
   },
   {
     path: 'palettes',
@@ -20,7 +18,8 @@ export const routes: Routes = [
       description:
         'Find color palettes for your next design. Browse pastel, warm, bright, and nature-inspired color combinations, then customize your favorite shades.',
     },
-    loadComponent: () => import('./pages/catalog').then((m) => m.Catalog),
+    loadComponent: () =>
+      import('./features/palettes/catalog/catalog').then((m) => m.Catalog),
   },
   {
     path: 'search-palettes',
@@ -30,7 +29,8 @@ export const routes: Routes = [
         'Search color palettes by name, mood, or color code. Find matching shades and fresh color combinations for your next creative project.',
       robots: 'noindex,follow',
     },
-    loadComponent: () => import('./pages/catalog').then((m) => m.Catalog),
+    loadComponent: () =>
+      import('./features/palettes/catalog/catalog').then((m) => m.Catalog),
   },
   {
     path: 'my-palettes',
@@ -40,19 +40,9 @@ export const routes: Routes = [
         'Keep your favorite color palettes in one place and return to the color combinations that inspire your next design.',
       robots: 'noindex,follow',
     },
-    canActivate: [
-      async () => {
-        const api = inject(Api);
-        const router = inject(Router);
-        await api.restoreSession();
-        return api.user()
-          ? true
-          : router.createUrlTree(['/signin'], {
-              queryParams: { returnUrl: '/my-palettes' },
-            });
-      },
-    ],
-    loadComponent: () => import('./pages/catalog').then((m) => m.Catalog),
+    canActivate: [requireAuth],
+    loadComponent: () =>
+      import('./features/palettes/catalog/catalog').then((m) => m.Catalog),
   },
   {
     path: 'generate-palettes',
@@ -61,7 +51,8 @@ export const routes: Routes = [
       description:
         'Create a custom five-color palette for your brand, website, or creative project. Adjust each shade, explore new combinations, and copy your color codes.',
     },
-    loadComponent: () => import('./pages/generator').then((m) => m.Generator),
+    loadComponent: () =>
+      import('./features/palettes/generator/generator').then((m) => m.Generator),
   },
   ...['signin', 'signup', 'forgotpassword', 'reset-password'].map((path) => ({
     path,
@@ -71,7 +62,7 @@ export const routes: Routes = [
         'Your next great color combination starts here. Join COLORceil to keep your favorite palettes together.',
       robots: 'noindex,follow',
     },
-    loadComponent: () => import('./pages/auth').then((m) => m.Auth),
+    loadComponent: () => import('./features/auth/auth').then((m) => m.Auth),
   })),
   {
     path: '**',
@@ -81,6 +72,7 @@ export const routes: Routes = [
         'Explore inspiring color palettes and create a color combination for your next design with COLORceil.',
       robots: 'noindex,follow',
     },
-    loadComponent: () => import('./pages/not-found').then((m) => m.NotFound),
+    loadComponent: () =>
+      import('./features/not-found/not-found').then((m) => m.NotFound),
   },
 ];

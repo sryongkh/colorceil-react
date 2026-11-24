@@ -5,7 +5,7 @@ import {
   rgbToHex,
   hexToRgb,
   readableInk,
-} from "../src/app/core/color.ts";
+} from "../../src/app/shared/utils/color.ts";
 
 test("RGB values clamp and round before converting to HEX", () => {
   assert.equal(rgbToHex([-1, 127.6, 400]), "#0080FF");

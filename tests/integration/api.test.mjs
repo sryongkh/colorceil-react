@@ -3,9 +3,9 @@ import assert from "node:assert/strict";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
 import { existsSync } from "node:fs";
-import { createApp } from "../src/server/app.js";
-import { seedPalettes } from "../src/server/seed.js";
-import User from "../src/server/models/User.js";
+import { createApp } from "../../src/server/app.js";
+import { seedPalettes } from "../../src/server/seed.js";
+import User from "../../src/server/models/User.js";
 
 let mongo, server, url;
 const mail = [];
@@ -107,7 +107,7 @@ test("signup, login, ownership, persistence, delete, and sign out", async () => 
   const palette = {
     name: "My custom palette",
     colors: ["#ffb443", "#000000", "#FFFFFF", "#AABBCC", "#123456"],
-    tags: ["warm"],
+    tags: ["warm", " Warm ", ""],
   };
   assert.equal(
     (
@@ -127,6 +127,7 @@ test("signup, login, ownership, persistence, delete, and sign out", async () => 
   assert.equal(saved.status, 201);
   const { palette: item } = await saved.json();
   assert.equal(item.colors[0], "#FFB443");
+  assert.deepEqual(item.tags, ["warm"]);
   const mine = await (
     await request("/palettes/mine", { cookie: cookieOf(login) })
   ).json();
@@ -267,6 +268,34 @@ test("rejects cross-origin writes, operator injection, oversized passwords, and 
     body: "{bad",
   });
   assert.equal(malformed.status, 400);
+});
+
+test("missing and non-object request bodies return client errors instead of server errors", async () => {
+  const paths = [
+    "/auth/register",
+    "/auth/login",
+    "/auth/reset-password",
+    "/auth/confirm-reset",
+    "/palettes",
+  ];
+  const payloads = [
+    undefined,
+    { body: "{}", headers: { "Content-Type": "text/plain" } },
+    { body: "[]", headers: { "Content-Type": "application/json" } },
+  ];
+  for (const path of paths) {
+    for (const payload of payloads) {
+      const response = await fetch(`${url}/api${path}`, {
+        method: "POST",
+        ...payload,
+      });
+      assert.equal(response.status, 400, `${path} with ${JSON.stringify(payload)}`);
+      assert.equal(
+        (await response.json()).message,
+        "Send a JSON object in the request body.",
+      );
+    }
+  }
 });
 
 test(

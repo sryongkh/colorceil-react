@@ -1,0 +1,84 @@
+<section class="hero page-width">
+  <p class="eyebrow">
+    <span class="dot"></span> Color inspiration for your next project
+  </p>
+  <h1>
+    Color palettes for<br /><span class="highlight">every idea.</span>
+  </h1>
+  <p class="hero-copy">
+    Discover color combinations for brands, websites, and creative
+    projects.<br />Explore palettes by mood or create your own in a few
+    clicks.
+  </p>
+  <div class="actions centered">
+    <a class="button blue" routerLink="/palettes">View palettes ↗</a
+    ><a class="button" routerLink="/" fragment="how-to-use">How to use ↓</a>
+  </div>
+</section>
+<section class="page-width section" aria-labelledby="inspiration-title">
+  <div class="section-heading">
+    <h2 id="inspiration-title">Explore inspiring color palettes</h2>
+    <a routerLink="/palettes">View all ↗</a>
+  </div>
+  @if (offline()) {
+    <p class="notice">
+      Explore these color palettes while we refresh the collection.
+    </p>
+  }
+  <div class="palette-grid">
+    @for (palette of palettes(); track palette._id) {
+      <app-palette-card [palette]="palette" />
+    }
+  </div>
+</section>
+<section id="how-to-use" class="how-to section">
+  <div class="page-width how-grid">
+    <div>
+      <p class="eyebrow">From a spark to a palette</p>
+      <h2>Create a color palette<br />that fits your vision.</h2>
+      <ol>
+        <li>Find a color combination that matches your mood.</li>
+        <li>Fine-tune each shade to match your design.</li>
+        <li>Give it a name and save it to your collection.</li>
+      </ol>
+      <a class="button pink" routerLink="/generate-palettes"
+        >Generate palettes ↗</a
+      >
+    </div>
+    <div class="poster" aria-label="A five color rainbow palette">
+      <div class="poster-colors">
+        @for (color of rainbow; track color) {
+          <span [style.background]="color"></span>
+        }
+      </div>
+      <p>MAKE ROOM FOR COLOR. ✳</p>
+    </div>
+  </div>
+</section>
+<section class="page-width section">
+  <div class="section-heading">
+    <h2>Color palette collections for every mood</h2>
+    <a routerLink="/palettes">Explore ↗</a>
+  </div>
+  <div class="collection-grid">
+    @for (collection of collections; track collection.tag) {
+      <a routerLink="/search-palettes" [queryParams]="{ q: collection.tag }"
+        ><img
+          [src]="collection.image"
+          [alt]="collection.tag + ' color inspiration'"
+          loading="lazy"
+        /><strong>#{{ collection.tag }} ↗</strong></a
+      >
+    }
+  </div>
+</section>
+<section class="page-width section tag-section">
+  <h2>Find color inspiration by mood.</h2>
+  <div class="tags">
+    @for (tag of tags; track tag) {
+      <a routerLink="/search-palettes" [queryParams]="{ q: tag }"
+        >#{{ tag }} ↗</a
+      >
+    }
+  </div>
+</section>

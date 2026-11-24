@@ -5,7 +5,7 @@ import { createApp } from "./app.js";
 import { seedPalettes } from "./seed.js";
 
 const examples = JSON.parse(
-  await readFile(new URL("../shared/palettes.json", import.meta.url), "utf8"),
+  await readFile(new URL("../data/example-palettes.json", import.meta.url), "utf8"),
 );
 const json = (res, status, body) => {
   res.writeHead(status, {

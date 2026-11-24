@@ -1,5 +1,19 @@
 import { test, expect } from '@playwright/test';
 
+test('palette draft survives reload and sign-in navigation without submitting', async ({ page }) => {
+  await page.goto('/generate-palettes?colors=%23111111,%23222222,%23333333,%23444444,%23555555');
+  await page.getByLabel('HEX code').fill('#ABCDEF');
+  await page.getByLabel('Palette name').fill('Unfinished sunset');
+  await page.getByLabel('Tags', { exact: false }).fill('warm, draft');
+  await page.reload();
+  await expect(page.getByLabel('Palette name')).toHaveValue('Unfinished sunset');
+  await expect(page.getByLabel('Tags', { exact: false })).toHaveValue('warm, draft');
+  await page.getByRole('link', { name: 'Sign in', exact: true }).click();
+  await page.goto('/generate-palettes');
+  await expect(page.getByLabel('Palette name')).toHaveValue('Unfinished sunset');
+  await expect(page.getByLabel('HEX code')).toHaveValue('#ABCDEF');
+});
+
 test('discover, customize RGB, sign up, persist, sign back in, and delete a palette', async ({
   page,
 }) => {
@@ -47,6 +61,10 @@ test('discover, customize RGB, sign up, persist, sign back in, and delete a pale
   await expect(
     page.getByRole('button', { name: 'View Browser sunset', exact: true }),
   ).toBeVisible();
+  await page.getByRole('textbox', { name: 'Search collection', exact: true }).fill('not-my-palette');
+  await page.getByRole('button', { name: 'Search collection', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'No palettes found.' })).toBeVisible();
+  await expect(page.getByText('Try a different name, mood, or HEX code.')).toBeVisible();
   await page.getByRole('button', { name: 'Sign out', exact: true }).click();
   await page.goto('/my-palettes');
   await expect(page).toHaveURL(/signin/);

@@ -6,84 +6,13 @@ import {
   RouterOutlet,
 } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { Api, errorMessage } from './core/api';
-import { Seo } from './core/seo';
+import { Api, errorMessage } from './core/services/api';
+import { Seo } from './core/services/seo';
 
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, RouterLink, RouterLinkActive, FormsModule],
-  template: `
-    <a class="skip-link" href="#main">Skip to content</a>
-    <header>
-      <a class="logo" routerLink="/" (click)="menu.set(false)"
-        >COLOR<span>ceil</span></a
-      >
-      <button
-        class="menu-toggle"
-        (click)="menu.set(!menu())"
-        [attr.aria-expanded]="menu()"
-        aria-controls="navigation"
-      >
-        Menu ☰
-      </button>
-      <nav id="navigation" aria-label="Main navigation" [class.open]="menu()">
-        <a
-          routerLink="/palettes"
-          routerLinkActive="active"
-          (click)="menu.set(false)"
-          >Palettes</a
-        >
-        <a
-          routerLink="/generate-palettes"
-          routerLinkActive="active"
-          (click)="menu.set(false)"
-          >Color tools</a
-        >
-        <form class="nav-search" (ngSubmit)="search()" role="search">
-          <label class="sr-only" for="nav-query">Search palettes</label
-          ><input
-            id="nav-query"
-            name="query"
-            [(ngModel)]="query"
-            placeholder="Find your next palette…"
-          /><button aria-label="Search palettes">↗</button>
-        </form>
-        @if (api.user()) {
-          <a routerLink="/my-palettes" (click)="menu.set(false)">My palettes</a
-          ><button class="account" (click)="logout()">Sign out</button>
-        } @else {
-          <a class="account" routerLink="/signin" (click)="menu.set(false)"
-            >Sign in ↗</a
-          >
-        }
-      </nav>
-    </header>
-    <div class="banner">
-      Find the colors that bring your ideas to life.
-      @if (!api.user()) {
-        <a routerLink="/signup">Create your free account ↗</a>
-      } @else {
-        <a routerLink="/generate-palettes">Make something colorful ↗</a>
-      }
-    </div>
-    @if (error()) {
-      <p class="notice error" role="alert">{{ error() }}</p>
-    }
-    <main id="main" tabindex="-1">
-      @if (api.demo()) {
-        <p class="page-width notice" role="status">
-          Explore color inspiration and try the palette creator. Personal
-          collections are coming soon.
-        </p>
-      }
-      <router-outlet />
-    </main>
-    <footer>
-      <a class="logo" routerLink="/">COLOR<span>ceil</span></a>
-      <p>Color palettes and inspiration for your next design.</p>
-      <a routerLink="/generate-palettes">Create a palette ↗</a>
-    </footer>
-  `,
+  templateUrl: './app.html',
 })
 export class App {
   private seo = inject(Seo);

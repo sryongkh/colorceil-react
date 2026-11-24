@@ -3,7 +3,7 @@ import Palette from "./models/Palette.js";
 
 export async function seedPalettes() {
   const examples = JSON.parse(
-    await readFile(new URL("../shared/palettes.json", import.meta.url), "utf8"),
+    await readFile(new URL("../data/example-palettes.json", import.meta.url), "utf8"),
   );
   await Palette.bulkWrite(
     examples.map((palette, i) => ({

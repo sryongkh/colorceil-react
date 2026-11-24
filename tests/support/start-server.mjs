@@ -1,8 +1,8 @@
 // Ephemeral MongoDB for browser checks; never connects to the user's database.
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
-import { createApp } from "../src/server/app.js";
-import { seedPalettes } from "../src/server/seed.js";
+import { createApp } from "../../src/server/app.js";
+import { seedPalettes } from "../../src/server/seed.js";
 const mongo = await MongoMemoryServer.create();
 await mongoose.connect(mongo.getUri());
 await seedPalettes();

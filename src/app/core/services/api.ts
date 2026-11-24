@@ -2,18 +2,9 @@ import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 
-export interface User {
-  id: string;
-  email: string;
-}
-export interface Palette {
-  _id: string;
-  name: string;
-  colors: string[];
-  tags: string[];
-  createdAt?: string;
-}
-export type PaletteInput = Pick<Palette, 'name' | 'colors' | 'tags'>;
+import type { User } from '../models/user';
+import type { Palette, PaletteInput } from '../models/palette';
+
 export function errorMessage(error: unknown): string {
   if (error instanceof HttpErrorResponse)
     return (

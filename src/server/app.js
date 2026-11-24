@@ -47,6 +47,15 @@ export function createApp({
         .status(403)
         .json({ message: "Request origin is not allowed." });
     }
+    if (
+      req.method === "POST" &&
+      req.path !== "/auth/logout" &&
+      (!req.body || typeof req.body !== "object" || Array.isArray(req.body))
+    ) {
+      return res
+        .status(400)
+        .json({ message: "Send a JSON object in the request body." });
+    }
     next();
   });
   const cookieOptions = {
@@ -264,7 +273,7 @@ export function createApp({
     const palette = await Palette.create({
       name: name.trim(),
       colors: colors.map((c) => c.toUpperCase()),
-      tags: tags.map((t) => t.trim().toLowerCase()).filter(Boolean),
+      tags: [...new Set(tags.map((t) => t.trim().toLowerCase()).filter(Boolean))],
       owner: req.user._id,
     });
     res

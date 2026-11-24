@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createServer } from "node:http";
-import { createDeploymentHandler } from "../src/server/deployment.js";
+import { createDeploymentHandler } from "../../src/server/deployment.js";
 
 test("deployment works as a read-only showcase without credentials and never fakes saves", async () => {
   const server = createServer(createDeploymentHandler({ env: {} }));

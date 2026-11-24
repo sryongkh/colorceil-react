@@ -1,0 +1,112 @@
+<section class="page-width section generator">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">Free color palette creator</p>
+      <h1>Create your own color palette.</h1>
+    </div>
+    <button class="button" (click)="randomize()">Shuffle colors ⤨</button>
+  </div>
+  <p class="intro">
+    Build a five-color palette for your brand, website, or next creative
+    project. Choose a shade and adjust it until every color feels right.
+  </p>
+  <div class="generator-colors">
+    @for (color of colors(); track $index; let i = $index) {
+      <button
+        [style.background]="color"
+        [style.color]="ink(color)"
+        [class.selected]="selected() === i"
+        [attr.aria-pressed]="selected() === i"
+        (click)="select(i)"
+        [attr.aria-label]="'Edit color ' + (i + 1) + ', ' + color"
+      >
+        <span>{{ selected() === i ? 'EDITING' : 'COLOR 0' + (i + 1) }}</span
+        ><strong>{{ color }}</strong
+        ><span aria-hidden="true">{{ selected() === i ? '↓' : '+' }}</span>
+      </button>
+    }
+  </div>
+  <div class="color-controls">
+    <div class="hex-control">
+      <label for="hex">HEX code</label
+      ><input
+        id="hex"
+        [ngModel]="hexDraft"
+        (ngModelChange)="changeHex($event)"
+        maxlength="7"
+        spellcheck="false"
+        [attr.aria-invalid]="!!hexError()"
+      />
+      <p class="field-error" role="status">{{ hexError() }}</p>
+    </div>
+    @for (channel of channels; track channel; let i = $index) {
+      <div class="channel">
+        <label [for]="'channel-' + i">{{ channel }}</label
+        ><input
+          [id]="'channel-' + i"
+          type="number"
+          min="0"
+          max="255"
+          [ngModel]="rgb()[i]"
+          (ngModelChange)="changeChannel(i, $event)"
+        /><label class="sr-only" [for]="'slider-' + i"
+          >{{ channel }} slider</label
+        ><input
+          [id]="'slider-' + i"
+          type="range"
+          min="0"
+          max="255"
+          [ngModel]="rgb()[i]"
+          (ngModelChange)="changeChannel(i, $event)"
+        />
+      </div>
+    }
+  </div>
+  <form class="save-panel" (ngSubmit)="save()">
+    <div>
+      <label for="palette-name">Palette name</label
+      ><input
+        id="palette-name"
+        name="name"
+        [(ngModel)]="name"
+        (ngModelChange)="remember()"
+        maxlength="80"
+        required
+        placeholder="Give your colors a name"
+      />
+    </div>
+    <div>
+      <label for="palette-tags"
+        >Tags <span class="muted">(optional, comma separated)</span></label
+      ><input
+        id="palette-tags"
+        name="tags"
+        [(ngModel)]="tags"
+        (ngModelChange)="remember()"
+        placeholder="pastel, summer"
+      />
+    </div>
+    <button
+      class="button pink"
+      [disabled]="saving() || !api.ready() || !!hexError()"
+    >
+      {{ saving() ? 'Saving…' : 'Save palette ↗' }}
+    </button>
+  </form>
+  @if (api.ready() && !api.user()) {
+    <p class="notice">
+      <a
+        routerLink="/signin"
+        [queryParams]="{ returnUrl: '/generate-palettes' }"
+        >Sign in</a
+      >
+      to save your palette. Your current colors will be kept on this device.
+    </p>
+  }
+  @if (error()) {
+    <p class="notice error" role="alert">{{ error() }}</p>
+  }
+  <p class="muted">
+    Saved palettes are shared in the public color library.
+  </p>
+</section>
