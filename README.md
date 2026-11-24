@@ -93,6 +93,31 @@ API integration tests and browser tests start isolated, temporary MongoDB server
 
 Production dependencies currently pass `npm audit --omit=dev`. The full development dependency tree still reports 16 moderate advisories in Angular CLI's transitive `glob`/`minimatch` tooling after nonbreaking updates. `npm audit fix --force` proposes downgrading Angular CLI to an incompatible major, so it is not applied.
 
+### Unit tests
+
+The Angular CLI unit-test builder runs **Vitest + jsdom** with Angular TestBed. Tests live in `tests/unit/` and exercise the existing application code, with Angular's HTTP testing backend and isolated substitutes for storage, routing, and API calls. Unit tests do not start Express, connect to MongoDB, send email, or make real HTTP requests.
+
+| Command | Purpose |
+| --- | --- |
+| `npm run test:unit` | Run unit tests once |
+| `npm run test:unit:watch` | Re-run while editing |
+| `npm run test:unit:coverage` | Generate coverage and enforce the configured minimums |
+| `npm run test:integration` | Run Express/MongoDB and deployment tests |
+| `npm test` | Run unit tests followed by integration tests |
+
+The unit suite covers:
+
+- Color conversion, RGB clamping, HEX validation, and readable foreground colors.
+- HTTP request/response contracts, session restoration, login/logout failures, and API error messages.
+- The route guard's decisions after asynchronous session restoration.
+- Draft import and recovery, corrupt or unavailable storage, RGB/HEX editing, shuffle, failed saves, guest redirects, and duplicate-submit prevention.
+- Catalog filtering and sorting without mutation, query updates, retries, and deletion success/cancellation/failure.
+- Authentication form validation, password confirmation, approved return URLs, failed login retries, and password-reset states.
+
+Coverage is intentionally scoped to the six tested application modules: the API service, authentication guard, auth controller, catalog controller, generator controller, and color utilities. It does not measure the entire application, rendered templates, the application shell, or the server. Minimums for this scope are 90% statements, 75% branches, 85% functions, and 90% lines. Open `coverage/colorceil/index.html` for the HTML report; `coverage/colorceil/lcov.info` is available for coverage tools. Generated coverage is ignored by Git.
+
+GitHub Actions runs the coverage check and integration suite before browser tests. See the [Angular testing guide](https://angular.dev/guide/testing) and [HTTP testing guide](https://angular.dev/guide/http/testing) for the underlying tools.
+
 ## Project structure
 
 ```text

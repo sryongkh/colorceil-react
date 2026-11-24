@@ -8,8 +8,12 @@
     "server:dev": "node --env-file-if-exists=.env --watch src/server/index.js",
     "build": "ng build",
     "check": "tsc --noEmit -p tsconfig.app.json",
-    "test": "node --test tests/unit/*.test.mjs tests/integration/*.test.mjs",
-    "test:e2e": "playwright test"
+    "test": "npm run test:unit && npm run test:integration",
+    "test:e2e": "playwright test",
+    "test:unit": "ng test --watch=false",
+    "test:unit:watch": "ng test --watch",
+    "test:unit:coverage": "ng test --watch=false --coverage",
+    "test:integration": "node --test tests/integration/*.test.mjs"
   },
   "private": true,
   "packageManager": "npm@11.6.1",
@@ -36,7 +40,10 @@
     "@angular/compiler-cli": "^21.2.0",
     "typescript": "~5.9.2",
     "@playwright/test": "^1.56.0",
-    "mongodb-memory-server": "^10.3.0"
+    "mongodb-memory-server": "^10.3.0",
+    "@vitest/coverage-v8": "^4.1.12",
+    "jsdom": "^29.1.1",
+    "vitest": "^4.1.12"
   },
   "engines": {
     "node": "^24.0.0"

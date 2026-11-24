@@ -65,6 +65,34 @@
           "options": {
             "proxyConfig": "proxy.conf.json"
           }
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "tsconfig.spec.json",
+            "include": [
+              "../tests/unit/**/*.spec.ts"
+            ],
+            "coverageInclude": [
+              "src/app/core/services/api.ts",
+              "src/app/core/guards/require-auth.ts",
+              "src/app/features/auth/auth.ts",
+              "src/app/features/palettes/catalog/catalog.ts",
+              "src/app/features/palettes/generator/generator.ts",
+              "src/app/shared/utils/color.ts"
+            ],
+            "coverageReporters": [
+              "text",
+              "html",
+              "lcov"
+            ],
+            "coverageThresholds": {
+              "statements": 90,
+              "branches": 75,
+              "functions": 85,
+              "lines": 90
+            }
+          }
         }
       }
     }
